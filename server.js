@@ -26,7 +26,7 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(ExpressFormidable());
+// app.use(ExpressFormidable());
 
 mongoose
     .connect(process.env.MONGO_URI)
