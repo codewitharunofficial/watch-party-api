@@ -32,6 +32,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/room", roomRoutes);
 app.use("/api/message", messageRoutes);
 
+app.use('/keep-alive', (req, res) => {
+    res.status(200).send({success: true});
+})
+
 // Map to store socket.id to userId mapping
 const socketToUserMap = new Map();
 
@@ -498,8 +502,6 @@ io.on("connection", (socket) => {
     });
 
 
-    // WebRTC signaling for voice chat
-    // WebRTC signaling for voice chat
     socket.on("join-voice", ({ roomId, userId }) => {
         console.log(`User ${userId} joined voice chat in room ${roomId}`);
         socket.join(`${roomId}-voice`);
